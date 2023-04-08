@@ -6,9 +6,9 @@ public class Messages {
     private String message;
 
     //////////////////// ::  Parameterised Constructor  :: ////////////////////
-    public Messages(long id, String message) {
+    public Messages(long id, String messages) {
         this.id = id;
-        this.message = message;
+        this.message = messages;
     }
 
     //////////////////// ::  Getter & Setter  :: ////////////////////
@@ -28,6 +28,12 @@ public class Messages {
         this.message = message;
     }
 
-
+    @Override
+    public String toString() {
+        return "Messages :: {" +'\n'+
+                "id = " + id +
+                "  ||   message = '" + message + '\n' +
+                '}';
+    }
 }
 
