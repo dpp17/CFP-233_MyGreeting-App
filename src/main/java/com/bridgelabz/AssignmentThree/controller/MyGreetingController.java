@@ -1,7 +1,6 @@
 package com.bridgelabz.AssignmentThree.controller;
 
 import com.bridgelabz.AssignmentThree.model.Messages;
-import com.bridgelabz.AssignmentThree.services.IMessagesServices;
 import com.bridgelabz.AssignmentThree.services.MessagesServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -17,7 +16,7 @@ public class MyGreetingController {
 
 
     //////////////////// ::  UC-01  :: ////////////////////
-    @GetMapping(value = {"/","/home"})
+    @GetMapping(value = {"/hello","/home"})
     public Messages getMessageFromUser(@RequestParam(value = "name", defaultValue = "World") String name){
         return new Messages(counter.incrementAndGet(), String.format(template,name));
     }
@@ -29,13 +28,21 @@ public class MyGreetingController {
 
 
     //////////////////// ::  UC-02  :: ////////////////////
-//    @Autowired
-//    private IMessagesServices iServices;
-    IMessagesServices iMessagesServices = new MessagesServices();
+    @Autowired
+    private MessagesServices iServices;
+//    IMessagesServices iMessagesServices = new MessagesServices();
 
     @GetMapping("/service")
     public Messages greeting() {
-//        return iServices.greetingMessages();
-        return iMessagesServices.greetingMessages();
+        return iServices.greetingMessages();
+//        return iMessagesServices.greetingMessages();
+    }
+
+    //////////////////// ::  UC-03  :: ////////////////////
+
+    @GetMapping(value = {"/printname","/"})
+    public String Messages(@RequestParam(value = "firstName", defaultValue = "") String firstName,
+                                       @RequestParam(value = "lastName", defaultValue = "") String lastName) {
+        return iServices.greetingMessagesTwo(firstName, lastName);
     }
 }
