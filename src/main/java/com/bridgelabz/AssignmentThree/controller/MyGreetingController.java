@@ -6,6 +6,7 @@ import com.bridgelabz.AssignmentThree.services.MessagesServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
 import java.util.concurrent.atomic.AtomicLong;
 
 @RestController
@@ -54,5 +55,8 @@ public class MyGreetingController {
         return "Saved Successfully!!!";
     }
 
-    
+    @GetMapping("/getMessage/{id}")
+    public String getMessage(@PathVariable long id) {
+        return iServices.getMessagesById(id);
+    }
 }

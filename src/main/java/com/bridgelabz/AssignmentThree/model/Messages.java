@@ -48,10 +48,10 @@ public class Messages {
 
     @Override
     public String toString() {
-        return "Messages :: {" +'\n'+
+        return "Messages ::" + '\n'+
                 "id = " + id +
-                "  ||   message = '" + message + '\n' +
-                '}';
+                "  ||   message = '" + message + '\n'
+                ;
     }
 }
 
