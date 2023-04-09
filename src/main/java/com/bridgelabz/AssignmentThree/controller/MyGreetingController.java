@@ -66,4 +66,11 @@ public class MyGreetingController {
     public List<Messages> getAllMessages(){
         return iServices.getAllMessagesInRepository();
     }
+
+    //////////////////// ::  UC-07  :: ////////////////////
+    @PutMapping("/editMessage/{id}")
+    public String editId(@RequestBody MessageDTO messageDTO, @PathVariable long id){
+        Messages message = new Messages(messageDTO);
+        return iServices.editGreetingMessage(message,id);
+    }
 }
